@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Lab 5 </title>
+    <script type = "text/javascript" src = "jquery.js"></script>
+    <script type = "text/javascript">
+        $(document).ready(function () {
+            $("#greendiv").click(changeColourG);
+            $("#browndiv").click(changeColourBr);
+            $("#yellowdiv").click(changeColourY);
+            $("#greydiv").click(changeColourGr);
+            $("#submitB").click(validateF);
+        });
+        function validateF() {
+            $("#warningMsg").html("");
+            $("form#form1 input").each(function () {
+                $(this).removeClass('errorForm');
+            });
+            $("form#form1 input").each(function () {
+                if ($(this).val().length < 1) {
+                    $(this).addClass('errorForm');
+                    $("#warningMsg").html("The Data provided is Incomplete.");
+                }
+                else {
+                    if ($("#fname").val().length < 6) {
+                        $("#warningMsg").html("First Name is  too small");
+                    }
+                    if ($("#lname").val().length < 6) {
+                        $("#warningMsg").html("Last Name is  too small");
+                    }
+                    if (isNaN($("#contactN").val())) {
+                        $("#warningMsg").html("The contact Number should be a number.");
+                    }
+                    if ($("#emailAdd").val().indexOf(".com") == -1) {
+                        $("#warningMsg").html("Email Address not Valid.");
+                    }
+                    if ($("#emailAdd").val().indexOf("@") == -1) {
+                        $("#warningMsg").html("Email Address not Valid.");
+                    }
+                    if ($("#emailAdd").val().indexOf("@") > $("#emailAdd").val().indexOf(".com")) {
+                        $("#warningMsg").html("Email Address not Valid.");
+                    }
+                    if ($("#websiteN").val().indexOf(".com") == -1) {
+                        $("#warningMsg").html("Email Address not Valid.");
+                    }
+                }
+            });
+                    if ($("#warningMsg").text().length < 1) {
+                        addToTable();
+                    }
+        }
+        function addToTable() {
+            $("#addressB").append("<tr><td>" + $("#fname").val() + "</td>" + "<td>" + $("#contactN").val() + "</td>" + "<td>" + $("#emailAdd").val() + "</td>" + "<td>" + $("#mailingAdd").val() + "</td>" + "<td> <input type = 'button' value = 'delete'/></td>" + "</tr>");
+        }
+        function changeColourG() {
+            $("#addressB").css("background-color", "green");
+        }
+        function changeColourGr() {
+            $("#addressB").css("background-color", "grey");
+        }
+        function changeColourY() {
+            $("#addressB").css("background-color", "yellow");
+        }
+        function changeColourBr() {
+            $("#addressB").css("background-color", "brown");
+        }
+    </script>
+    <style type = "text/css">
+        .errorForm {
+            background-color: red;
+        }
+        .colorgreen {
+            background-color: green;
+        }
+        .colorblack {
+            background-color: black;
+        }
+        .colorbrown {
+            background-color: brown;
+        }
+        .colorgrey {
+            background-color: grey;
+        }
+        </style>
+</head>
+<body style="background-color: #51CBDE;">
+    
+   
+     <br/> <br/> <br/>
+<div align="center">
+<p ><font size="20">Sign Up Form</font></p>
+<div>
+<details>
+<summary>Personal Information </summary>
+    <form id ="form1" action = "#" target ="_top">
+        First Name: <br/><input type ="text" id ="fname" placeholder="Your First Name"/><br/>
+        Last Name: <br/><input type ="text" id ="lname" placeholder="Your Last Name"/><br/>
+       
+        Class: <br/><input type ="text" id ="classN" placeholder ="Class"/><br/>
+        Section: <br/><input type ="text" id ="sectionN" placeholder ="Section Name"/><br/>
+        
+         </form>
+</details>
+<details>
+<summary>Contact Information </summary>
+    <form id ="form1" action = "#" target ="_top">
+        Contact Number: <br/><input type ="text" id ="contactN" placeholder ="contact number"/><br/>
+        Email Adress: <br/><input type ="text" id ="emailAdd" placeholder ="Email Address"/><br/>
+        Mailing Address: <br/><input type ="text" id ="mailingAdd" placeholder ="Mailing Address"/><br/>
+        Class: <br/><input type ="text" id ="classN" placeholder ="Class"/><br/>
+        Section: <br/><input type ="text" id ="sectionN" placeholder ="Section Name"/><br/>
+        
+        
+        </form>
+</details>
+<details>
+<summary>Other Information </summary>
+    <form id ="form1" action = "#" target ="_top">
+        
+        Website: <br/><input type ="text" id ="websiteN" placeholder ="Website"/><br/>
+        <input type ="submit" value ="Submit " id ="submitB">
+        </form>
+</details>
+
+    <p id ="warningMsg"></p>
+<table id ="addressB" border ="1">
+        <tr>
+            <th> Name </th>
+            <th> Phone Number </th>
+            <th> Email </th>
+            <th> Address </th>
+            </tr>
+    </table>
+</body>
+</html>
